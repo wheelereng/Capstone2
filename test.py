@@ -31,7 +31,7 @@ def MultipleCoinSort(value, NodeToRemove):
     '''
     describe function
     '''
-
+    
     #Copies the list and removes the denomination to exclude
     denomination2 = denomination1
     denomination2.pop(NodeToRemove)
@@ -42,19 +42,34 @@ def MultipleCoinSort(value, NodeToRemove):
 
     #Loop through the updated denomination list 
     for d in denomination2:
-       #Call original coinsort, store the number of coins that fit into it and the remainder 
-       ResultTup = coinsort(rem, denomination2.index(d))
-       #Update remainder for the next iteration
-       rem = ResultTup[1]
-       #Append number of coins to the result list
-       resultlist.append(ResultTup[0])
+        #Call original coinsort, store the number of coins that fit into it and the remainder 
+        ResultTup = coinsort(rem, denomination2.index(d))
+        #Update remainder for the next iteration
+        rem = ResultTup[1]
+        #Append number of coins to the result list
+        resultlist.append(ResultTup[0])
     
     return (resultlist, rem)
-
-def UserFriendlyPrint():
-    pass
+    
+    
 
 def GetUserData():
+    #latest attempt - Alex
+    #cannot make the loop work
+    value = int(input("How many pennies would you like to exchange? You are allowed to exchange up to 10,000 "))
+    while value < 0 and value < 10000:
+        print("Please choose a number between 0 and 10,000")
+    else:
+        print("You have chosen to exchange " + str(value) + "p")
+        NodeToRemove = int(input("What denomination would you like to exclude? -list denominations- "))
+        while NodeToRemove < 0 and NodeToRemove > 4:
+            print("Please choose a number between 0 and 4")
+        else:
+            print("You have chosen to exclude " + str(NodeToRemove))
+
+            
+
+def UserFriendlyPrint():
     pass
 
 def PrintConfigurationList():
@@ -82,4 +97,10 @@ while True:
 coinsort(amount, deno)
 '''
 
-#'hello - Alex'
+
+# GetUserData()
+# UserFriendlyPrint()
+# MultipleCoinSort(563, 0)
+
+
+    
