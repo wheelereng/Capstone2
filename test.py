@@ -20,8 +20,8 @@ def MultipleCoinSort(userTup):
     global denominationText2
     
     #Copies the lists and removes the denominations to exclude
-    denominationValue2 = denominationValue
-    denominationText2 = denominationText
+    denominationValue2 = denominationValue.copy()
+    denominationText2 = denominationText.copy()
     denominationText2.pop(NodeToRemove)
     denominationValue2.pop(NodeToRemove)
 
