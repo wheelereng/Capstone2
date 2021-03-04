@@ -1,3 +1,5 @@
+#change
+
 denomination1 = [200, 100, 50, 20, 10]
 denom = ["£2", "£1", "50p", "20p", "10p"]
 
@@ -56,18 +58,16 @@ def MultipleCoinSort(value, NodeToRemove):
 def GetUserData():
     #latest attempt - Alex
     #cannot make the loop work
-    value = int(input("How many pennies would you like to exchange? You are allowed to exchange up to 10,000 "))
-    while value < 0 and value < 10000:
-        print("Please choose a number between 0 and 10,000")
+    value = int(input("Please choose a number between 0 and 10,000 "))
+    while value < 0 or value > 10000:
+        value = int(input("Please choose a number between 0 and 10,000 "))
     else:
         print("You have chosen to exchange " + str(value) + "p")
         NodeToRemove = int(input("What denomination would you like to exclude? -list denominations- "))
-        while NodeToRemove < 0 and NodeToRemove > 4:
-            print("Please choose a number between 0 and 4")
+        while NodeToRemove < 0 or NodeToRemove > 4:
+            NodeToRemove = int(input("What denomination would you like to exclude? -list denominations- "))
         else:
             print("You have chosen to exclude " + str(NodeToRemove))
-
-            
 
 def UserFriendlyPrint():
     pass
@@ -98,7 +98,7 @@ coinsort(amount, deno)
 '''
 
 
-# GetUserData()
+GetUserData()
 # UserFriendlyPrint()
 # MultipleCoinSort(563, 0)
 
