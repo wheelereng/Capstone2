@@ -4,7 +4,7 @@ denominationText = ["£2", "£1", "50p", "20p", "10p"]
 def CoinSort(userTup, MCS=False):
     '''
     A function that, given the denomination, will give the number of coins of that denomination that will fit
-    into the value, and the remainder
+    into the value, along with the remainder.
     '''
     #returns a tuple of the value, number of coins that can fit into that value (integer division),
     #the index of the denomination we're considering and the remainder (modulo)
@@ -25,7 +25,7 @@ def MultipleCoinSort(userTup):
 
     global denominationText2, denominationValue2
     
-    #Copies the lists (don't just refer to them!) and removes the denominations to exclude
+    #Copies the lists (Deep copy not shallow copy! don't just point to them!) and removes the denominations to exclude
     denominationValue2 = denominationValue.copy()
     denominationText2 = denominationText.copy()
     denominationText2.pop(NodeToRemove)
@@ -37,34 +37,28 @@ def MultipleCoinSort(userTup):
 
     #Loop through the updated denomination list indexes 
     for dIndex in range(len(denominationValue2)):
-        #Call original coinsort, store the number of coins that fit into it and the remainder 
+        #Call original coinsort alg, store the number of coins that fit into it and the remainder 
         MCSResultTup = CoinSort((rem, dIndex), True)
         #Update remainder for the next iteration
         rem = MCSResultTup[3]
         #Append number of coins to the result list
         resultlist.append(MCSResultTup[1])
-    #Return number of coins list, the remainder and the value we were given.
+    #Return number of coins list, the remainder and the value we were originally given.
     return (resultlist, rem, value)
     
     
 
 def GetUserData(MCS=False):
     '''
-    A function that gets the data required from the user for the multiplecoin sorter
+    A function that gets the data required from the user for the coin sorter and the multiple coin sorter.
 
-    Note: I have added extra precautions to only allow the user to input an integer!! changes 
-    made are the try and except.
-
-    Note: I have also added an if statement to see if the data is going to be used for normal coin
-    sort or the mutliple one. This is because we need the same data for both, it's just in different 
-    contexts. (Message me if I'm unclear.)
     '''
 
     #init. value variable and NodeToRemove varaible for loop logic.
     value = -1
     NodeToRemove = -1
 
-    #Continue to ask for a value until we get it between 0 and 10,000 inclusive and until it's an integer.
+    #Continue to ask for a value until we get it between 0 and 10,000 inclusive.
     while value < 0 or value > 10000:
         #Try and Except to make sure only integers are entered
         try:
@@ -74,7 +68,7 @@ def GetUserData(MCS=False):
     else:
         print("You have chosen to exchange " + str(value) + "p\n")
 
-        #Continue to ask for a value until we get it between 0 and 4 inclusive and until it's an integer.
+        #Continue to ask for a value until we get it between 0 and 4 inclusive.
 
         #Depending if we're using multiple coin sort or not, change the end of the sentence.
         EndString = "exclude" if MCS else "consider"
@@ -87,22 +81,19 @@ def GetUserData(MCS=False):
                 print("Integers only!")
         else:
             print("You have chosen to " + EndString + " " + str(denominationText[NodeToRemove]))
-    #return the data in tuple format 
- 
+
+    #return the data in tuple format for consistency.
     return (value, NodeToRemove)
     
 
 def UserFriendlyPrintCoinSort(ResultTup):
     '''
     A function that prints the results of CoinSort() in a human friendly manner.
-    case of 0p considered first.
+    case of less than 10p considered first.
     '''
     
     if ResultTup[0] < 10:
        print("You can't break down " + str(ResultTup[0]) + "p any further\n")
-    # if ResultTup[0]==0:
-    #      print("You can't break down 0p any further\n")
-
     else:
         StringToPrint = "You can break down " + str(ResultTup[0]) + "p into " + str(ResultTup[1]) + " x " + denominationText[ResultTup[2]] 
 
@@ -126,7 +117,7 @@ def UserFriendlyPrintMultipleCoin(MCSResultTup):
     '''
     #if we have a value less than 10p then it can't be broken down AND
     #Special case for value=10p and removing 10p as it's the smallest denomination,
-    #we won't be able to break it down any further so we can just print and return early.
+    #we won't be able to break it down any further.
 
     if MCSResultTup[2] < 10 or MCSResultTup[2]==MCSResultTup[1]:
         print("You can't break down " + str(MCSResultTup[2]) + "p any further\n")
