@@ -7,7 +7,7 @@ def CoinSort(userTup, MCS=False):
     into the value, and the remainder
     '''
     #returns a tuple of the value, number of coins that can fit into that value (integer division),
-    # the index of the denomination we're considering and the remainder (modulo)
+    #the index of the denomination we're considering and the remainder (modulo)
     #If we're inside the MCS we use the updated list without the excluded denomination.
     if MCS: 
         return(userTup[0], (userTup[0] // denominationValue2[userTup[1]]), userTup[1], (userTup[0] % denominationValue2[userTup[1]]))
@@ -22,6 +22,7 @@ def MultipleCoinSort(userTup):
     '''
     value = userTup[0]
     NodeToRemove = userTup[1]
+
     global denominationText2, denominationValue2
     
     #Copies the lists (don't just refer to them!) and removes the denominations to exclude
@@ -29,8 +30,6 @@ def MultipleCoinSort(userTup):
     denominationText2 = denominationText.copy()
     denominationText2.pop(NodeToRemove)
     denominationValue2.pop(NodeToRemove)
-
-    print(denominationText2)
 
     #Initiates emty list for the results and initiates the first value
     resultlist = []
@@ -40,7 +39,6 @@ def MultipleCoinSort(userTup):
     for dIndex in range(len(denominationValue2)):
         #Call original coinsort, store the number of coins that fit into it and the remainder 
         MCSResultTup = CoinSort((rem, dIndex), True)
-        
         #Update remainder for the next iteration
         rem = MCSResultTup[3]
         #Append number of coins to the result list
@@ -90,6 +88,7 @@ def GetUserData(MCS=False):
         else:
             print("You have chosen to " + EndString + " " + str(denominationText[NodeToRemove]))
     #return the data in tuple format 
+ 
     return (value, NodeToRemove)
     
 
@@ -125,10 +124,12 @@ def UserFriendlyPrintMultipleCoin(MCSResultTup):
     note:
     MCSResultTup is the return from MultipleCoin() function
     '''
-    if MCSResultTup[2] < 10:
+    #if we have a value less than 10p then it can't be broken down AND
+    #Special case for value=10p and removing 10p as it's the smallest denomination,
+    #we won't be able to break it down any further so we can just print and return early.
+
+    if MCSResultTup[2] < 10 or MCSResultTup[2]==MCSResultTup[1]:
         print("You can't break down " + str(MCSResultTup[2]) + "p any further\n")
-    # if MCSResultTup[2]==0:  
-    #     print("You can't break down 0p any further\n")
     else:
         #Inititiates start of string with user given value
         StringToPrint = "You can convert " + str(MCSResultTup[2]) + "p into   "
