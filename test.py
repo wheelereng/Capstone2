@@ -19,7 +19,7 @@ def MultipleCoinSort(userTup):
     NodeToRemove = userTup[1]
     global denominationText2
     
-    #Copies the lists and removes the denominations to exclude
+    #Copies the lists (don't just refer to them!) and removes the denominations to exclude
     denominationValue2 = denominationValue.copy()
     denominationText2 = denominationText.copy()
     denominationText2.pop(NodeToRemove)
@@ -81,7 +81,7 @@ def GetUserData(MCS=False):
             except:
                 print("Integers only!")
         else:
-            print("You have chosen to " + EndString + " " + str(denominationText[NodeToRemove]) + "\n")
+            print("You have chosen to " + EndString + " " + str(denominationText[NodeToRemove]))
     #return the data in tuple format 
     return (value, NodeToRemove)
     
@@ -89,16 +89,21 @@ def GetUserData(MCS=False):
 def UserFriendlyPrintCoinSort(ResultTup):
     '''
     A function that prints the results of CoinSort() in a human friendly manner.
+    case of 0p considered first.
     '''
-    StringToPrint = "You can break down " + str(ResultTup[0]) + " into " + str(ResultTup[1]) + " x " + denominationText[ResultTup[2]] 
+    if ResultTup[0]==0:
+         print("You can't break down 0p any further\n")
 
-    #If there's a remainder, concatenate it to the string.
-    if ResultTup[3] != 0:
-        StringToPrint += " with a remainder of " + str(ResultTup[3]) + "p."
     else:
-        StringToPrint += "."
-    
-    print("\n" + StringToPrint + "\n")
+        StringToPrint = "You can break down " + str(ResultTup[0]) + "p into " + str(ResultTup[1]) + " x " + denominationText[ResultTup[2]] 
+
+        #If there's a remainder, concatenate it to the string.
+        if ResultTup[3] != 0:
+            StringToPrint += " with a remainder of " + str(ResultTup[3]) + "p."
+        else:
+            StringToPrint += "."
+        
+        print("\n" + StringToPrint + "\n")
     
 
 
@@ -110,21 +115,23 @@ def UserFriendlyPrintMultipleCoin(MCSResultTup):
     note:
     MCSResultTup is the return from MultipleCoin() function
     '''
+    if MCSResultTup[2]==0: 
+        print("You can't break down 0p any further\n")
+    else:
+        #Inititiates start of string with user given value
+        StringToPrint = "You can convert " + str(MCSResultTup[2]) + "p into   "
 
-    #Inititiates start of string with user given value
-    StringToPrint = "You can convert " + str(MCSResultTup[2]) + " into   "
+        #Loops through list of number of coins and concatenates them to the string
+        for nCoinsIndex in range(4):
+            if MCSResultTup[0][nCoinsIndex] != 0:
+                StringToPrint += str(MCSResultTup[0][nCoinsIndex]) + " x " +  denominationText2[nCoinsIndex] + "   "
 
-    #Loops through list of number of coins and concatenates them to the string
-    for nCoinsIndex in range(4):
-        if MCSResultTup[0][nCoinsIndex] != 0:
-            StringToPrint += str(MCSResultTup[0][nCoinsIndex]) + " x " +  denominationText2[nCoinsIndex] + "   "
+        #If there's a remainder, concatentate it to the end of the string
+        if MCSResultTup[1] != 0:
+            StringToPrint += "with remainder " + str(MCSResultTup[1]) + "p."
 
-    #If there's a remainder, concatentate it to the end of the string
-    if MCSResultTup[1] != 0:
-        StringToPrint += "with remainder " + str(MCSResultTup[1]) + "p."
-
-    #print to the console
-    print("\n" + StringToPrint + "\n")    
+        #print to the console
+        print("\n" + StringToPrint + "\n")    
 
 
 def PrintConfigurationList():
