@@ -1,7 +1,5 @@
 import requests as rq
 
-
-
 Configurations = {
     "Minimum Value" : 0,
     "Maximum Value" : 10000,
@@ -157,31 +155,130 @@ def PrintConfigurations():
 
 
 def GetCurrencyData():
-    '''
-    '''
+    value = -10000
+    #Continue to ask for a value until we get it between 0 and 10,000 inclusive.
+    while value < Configurations["Minimum Value"] or value > Configurations["Maximum Value"]:
+        #Try and Except to make sure only integers are entered
+        try:
+            value = int(input("Please choose a number between " + str(Configurations["Minimum Value"]) + " and " + str(Configurations["Maximum Value"]) + ": "))
+        except ValueError:
+            print("Integers only!")
+
+    CValue = -1
+    while CValue < 0 or CValue > 1:
+        try:
+            CValue = int(input("Please choose a currency (0 = MGA, 1 = USD): "))
+        except ValueError:
+            print("Integers only!")
+    
+    Currencyto = "MGA" if CValue==0 else "USD"
+
+    return (value, Currencyto)
+
+def PrintCurrencyNicely(value):
+
+    symbol = "Ar" if value[1]=="MGA" else "$"
+    print("£" + str(value[0]) + " = " + symbol + str(ConvertCurrency(value[1], value[0])))
 
 
-
-def ConvertCurrency(Currencyfrom, Currencyto, value):
+def ConvertCurrency(Currencyto, value):
     '''
     describe func
     '''
+    Currencyfrom = "GBP"
     url="https://free.currconv.com/api/v7/convert?q=" + Currencyfrom + "_" + Currencyto + "&compact=ultra&apiKey=4be37014813c4016a9ae"
     response = rq.get(url)
     ConvertDict = response.json()
 
     return round((ConvertDict[Currencyfrom + "_" + Currencyto]*value), 2)
 
-UserFriendlyPrintMultipleCoin(MultipleCoinSort(GetUserData(True)))
+def SubMenu():
+    case = -1
+    while case != 4:
+        try:
+            print("*** Set Details - Sub Menu ***")
+            print("1 - Set Currency")
+            print("2 - Set Minimum Coin Input Value")
+            print("3 - Set Maximum Coin Input Value")
+            print("4 - Return To Main Menu")
 
-Configurations["Minimum Value"] = 349
-Configurations["Maximum Value"] = 1998
+            case = int(input("Enter option here: "))
 
-UserFriendlyPrintMultipleCoin(MultipleCoinSort(GetUserData(True)))
+            if case==1:
+                CValue = -1
+                while CValue < 0 or CValue > 1:
+                    try:
+                        CValue = int(input("Please choose a currency (0 = MGA, 1 = USD): "))
+                    except ValueError:
+                        print("Integers only!")
+    
+                    Currencyset = "MGA" if CValue==0 else "USD"  
 
-#UserFriendlyPrintCoinSort(CoinSort(GetUserData(False)))
+                    Configurations["Current Currency"] = Currencyset
+            if case==2: 
+                NewMin = -2
+                while NewMin < 0:
+                    try:
+                        NewMin = int(input("Please enter a new minimum: "))
+                    except ValueError:
+                        print("Integers only!")
+                Configurations["Minimum Value"]=NewMin
 
-#print(ConvertCurrency("GBP", "MGA", 10))
+            if case==3:
+                NewMax = -1
+                while NewMax < 0 or NewMax < Configurations["Minimum Value"]:
+                    try:
+                        NewMax = int(input("Please enter a new maximum: "))
+                    except ValueError:
+                        print("Integers only!")
+                Configurations["Maximum Value"]=NewMax            
 
-PrintConfigurations()
+        except ValueError:
+            print("Integers only!")
+
+def MainMenu():
+    case = -1
+
+    while case != 6:
+        try:
+            print("***Coin Sorter - Main Menu***\n")
+            print("1 - Coin Calculator")
+            print("2 - Multiple Coin Calculator")
+            print("3 - Print Coin List")
+            print("4 - Set Details")
+            print("5 - Display Program Configurations")
+            print("6 - Quit Program")
+
+            case = int(input("Enter option here: "))
+
+            if case==1:
+                UserFriendlyPrintCoinSort(CoinSort(GetUserData(False)))
+            elif case==2:
+                UserFriendlyPrintMultipleCoin(MultipleCoinSort(GetUserData(True)))
+            elif case==3:
+                print("\nThe available denominations are: ")
+                for denom in denominationText:
+                    print(denom)
+                print("\n")
+            elif case==4:
+                SubMenu()
+            elif case==5:
+                print("\n")
+                PrintConfigurations()
+                print("\n")
+    
+        except ValueError:
+            print("integers only!")
+        
+        
+        
+
+
+
+
+MainMenu()
+
+
+
+
 
