@@ -1,13 +1,18 @@
 denominationValue = [200, 100, 50, 20, 10]
 denominationText = ["£2", "£1", "50p", "20p", "10p"]
 
-def CoinSort(userTup):
+def CoinSort(userTup, MCS=False):
     '''
     A function that, given the denomination, will give the number of coins of that denomination that will fit
     into the value, and the remainder
     '''
-    #returns a tuple of the number of coins (integer division), and the remainder (modulo)
-    return(userTup[0], (userTup[0] // denominationValue[userTup[1]]), userTup[1], (userTup[0] % denominationValue[userTup[1]]))
+    #returns a tuple of the value, number of coins that can fit into that value (integer division),
+    # the index of the denomination we're considering and the remainder (modulo)
+    #If we're inside the MCS we use the updated list without the excluded denomination.
+    if MCS: 
+        return(userTup[0], (userTup[0] // denominationValue2[userTup[1]]), userTup[1], (userTup[0] % denominationValue2[userTup[1]]))
+    else:
+        return(userTup[0], (userTup[0] // denominationValue[userTup[1]]), userTup[1], (userTup[0] % denominationValue[userTup[1]]))
 
 
 def MultipleCoinSort(userTup):
@@ -17,7 +22,7 @@ def MultipleCoinSort(userTup):
     '''
     value = userTup[0]
     NodeToRemove = userTup[1]
-    global denominationText2
+    global denominationText2, denominationValue2
     
     #Copies the lists (don't just refer to them!) and removes the denominations to exclude
     denominationValue2 = denominationValue.copy()
@@ -25,19 +30,21 @@ def MultipleCoinSort(userTup):
     denominationText2.pop(NodeToRemove)
     denominationValue2.pop(NodeToRemove)
 
+    print(denominationText2)
+
     #Initiates emty list for the results and initiates the first value
     resultlist = []
     rem = value
 
-    #Loop through the updated denomination list 
-    for dIndex in denominationValue2:
+    #Loop through the updated denomination list indexes 
+    for dIndex in range(len(denominationValue2)):
         #Call original coinsort, store the number of coins that fit into it and the remainder 
-        MCSResultTup = CoinSort((rem, denominationValue2.index(dIndex)))
+        MCSResultTup = CoinSort((rem, dIndex), True)
+        
         #Update remainder for the next iteration
         rem = MCSResultTup[3]
         #Append number of coins to the result list
         resultlist.append(MCSResultTup[1])
-    
     #Return number of coins list, the remainder and the value we were given.
     return (resultlist, rem, value)
     
