@@ -91,8 +91,11 @@ def UserFriendlyPrintCoinSort(ResultTup):
     A function that prints the results of CoinSort() in a human friendly manner.
     case of 0p considered first.
     '''
-    if ResultTup[0]==0:
-         print("You can't break down 0p any further\n")
+    
+    if ResultTup[0] < 10:
+       print("You can't break down " + str(ResultTup[0]) + "p any further\n")
+    # if ResultTup[0]==0:
+    #      print("You can't break down 0p any further\n")
 
     else:
         StringToPrint = "You can break down " + str(ResultTup[0]) + "p into " + str(ResultTup[1]) + " x " + denominationText[ResultTup[2]] 
@@ -115,8 +118,10 @@ def UserFriendlyPrintMultipleCoin(MCSResultTup):
     note:
     MCSResultTup is the return from MultipleCoin() function
     '''
-    if MCSResultTup[2]==0: 
-        print("You can't break down 0p any further\n")
+    if MCSResultTup[2] < 10:
+        print("You can't break down " + str(MCSResultTup[2]) + "p any further\n")
+    # if MCSResultTup[2]==0:  
+    #     print("You can't break down 0p any further\n")
     else:
         #Inititiates start of string with user given value
         StringToPrint = "You can convert " + str(MCSResultTup[2]) + "p into   "
