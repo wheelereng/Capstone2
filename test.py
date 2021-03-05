@@ -1,3 +1,13 @@
+import requests as rq
+
+
+
+Configurations = {
+    "Minimum Value" : 0,
+    "Maximum Value" : 10000,
+    "Current Currency" : "GBP (£)"
+}
+
 denominationValue = [200, 100, 50, 20, 10]
 denominationText = ["£2", "£1", "50p", "20p", "10p"]
 
@@ -59,11 +69,11 @@ def GetUserData(MCS=False):
     NodeToRemove = -1
 
     #Continue to ask for a value until we get it between 0 and 10,000 inclusive.
-    while value < 0 or value > 10000:
+    while value < Configurations["Minimum Value"] or value > Configurations["Maximum Value"]:
         #Try and Except to make sure only integers are entered
         try:
-            value = int(input("Please choose a number between 0 and 10,000: "))
-        except:
+            value = int(input("Please choose a number between " + str(Configurations["Minimum Value"]) + " and " + str(Configurations["Maximum Value"]) + ": "))
+        except ValueError:
             print("Integers only!")
     else:
         print("You have chosen to exchange " + str(value) + "p\n")
@@ -77,7 +87,7 @@ def GetUserData(MCS=False):
             #Try and Except to make sure only integers are entered
             try:
                 NodeToRemove = int(input("What denomination would you like to " + EndString + "? (0 = £2, 1 = £1, 2 = 50p, 3 = 20p, 4 = 10p) "))
-            except:
+            except ValueError:
                 print("Integers only!")
         else:
             print("You have chosen to " + EndString + " " + str(denominationText[NodeToRemove]))
@@ -138,14 +148,40 @@ def UserFriendlyPrintMultipleCoin(MCSResultTup):
         print("\n" + StringToPrint + "\n")    
 
 
-def PrintConfigurationList():
-    pass
+def PrintConfigurations():
+    '''
+    describe func
+    '''
+    for key in Configurations:
+        print(key + ": " +str(Configurations[key]))
 
-def ConvertCurrency():
-    pass
 
+def GetCurrencyData():
+    '''
+    '''
+
+
+
+def ConvertCurrency(Currencyfrom, Currencyto, value):
+    '''
+    describe func
+    '''
+    url="https://free.currconv.com/api/v7/convert?q=" + Currencyfrom + "_" + Currencyto + "&compact=ultra&apiKey=4be37014813c4016a9ae"
+    response = rq.get(url)
+    ConvertDict = response.json()
+
+    return round((ConvertDict[Currencyfrom + "_" + Currencyto]*value), 2)
 
 UserFriendlyPrintMultipleCoin(MultipleCoinSort(GetUserData(True)))
 
-UserFriendlyPrintCoinSort(CoinSort(GetUserData(False)))
+Configurations["Minimum Value"] = 349
+Configurations["Maximum Value"] = 1998
+
+UserFriendlyPrintMultipleCoin(MultipleCoinSort(GetUserData(True)))
+
+#UserFriendlyPrintCoinSort(CoinSort(GetUserData(False)))
+
+#print(ConvertCurrency("GBP", "MGA", 10))
+
+PrintConfigurations()
 
