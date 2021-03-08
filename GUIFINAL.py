@@ -10,6 +10,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+#Imports our capstone functions and the os library.
 import Capstone2_part3 as CP3
 import os
 
@@ -327,6 +328,8 @@ class Ui_MainWindow(object):
 
         scriptDir = os.path.dirname(os.path.realpath("WinIcon.jpg"))
         MainWindow.setWindowIcon(QtGui.QIcon(scriptDir + os.path.sep + "WinIcon.jpg"))
+
+
         self.CoinCalculatorbutton.setText(_translate("MainWindow", "Coin Calculator"))
         self.MultipleCoin_button.setText(_translate("MainWindow", "Multiple Coin"))
         self.Configurationsbutton.setText(_translate("MainWindow", "Configurations"))
@@ -360,7 +363,7 @@ class Ui_MainWindow(object):
         self.configcurrencybuttUSD.setText(_translate("MainWindow", "USD"))
         self.printcoinlistbutton.setText(_translate("MainWindow", "PRINT COIN LIST "))
         self.printcoinlistbutton_2.setText(_translate("MainWindow", "PRINT CONFIGURATIONS"))
-        self.configresultslabel.setText(_translate("MainWindow", "CONFIGURATION RESULTS"))
+        self.configresultslabel.setText(_translate("MainWindow", ""))
         self.actionMenu2.setText(_translate("MainWindow", "Menu2"))
 
         #event listeners for menu buttons
