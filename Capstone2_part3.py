@@ -128,7 +128,22 @@ def PrintConfigurations():
     '''
     This function will return the current configurations of the program in a user friendly string.
     '''
+    stringToPrint = "The current configurations are:\n"
     # This will list the current configurations as defined in Configurations at the top of the code.
     for key in Configurations:
         stringToPrint += key + ": " +str(Configurations[key]) + "\n"
+    return stringToPrint
+
+def PrintCoinList():
+    '''
+    This function will print the available denominations in a friendly manner.
+    '''
+
+    StringToPrint = "The available denominations are\n"
+
+    for denom in denominationText:
+        StringToPrint += denom + "\n"
+        
+    return StringToPrint
+
 

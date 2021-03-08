@@ -281,8 +281,41 @@ class Ui_MainWindow(object):
         except ValueError:
             self.Multiplecoinsortresultslabel.setText("Integers only!")
 
-    def UpdateConfigurationClicked():
+    def UpdateConfigurationClicked(self):
+        try:
+            errormessage = "Configurations Updated!"
+            RadioFailBoo = False
+            newmin = int(self.configmintextbox.text())
+            newmax = int(self.configmaxtextbox.text())
 
+            if not (newmin > newmax or newmin < 0):
+                if self.configcurrencybuttGBP.isChecked():
+                    currency = "GBP (£)"
+                elif self.configcurrencybuttMGA.isChecked():
+                    currency = "MGA (Ar)"
+                elif self.configcurrencybuttUSD.isChecked():
+                    currency = "USD ($)"
+                else:
+                    RadioFailBoo = True
+                    errormessage = "Please select a currency"
+            else: 
+                errormessage = "Please give us a reasonable minimum and maximum"
+                RadioFailBoo = True
+
+            if not RadioFailBoo:
+                CP3.UpdateConfiguration(newmin, newmax, currency)
+
+            
+        except ValueError:
+            errormessage = "Integers only!"
+        
+        self.configresultslabel.setText(errormessage)
+
+    def PrintConfigurations(self):
+        self.configresultslabel.setText(CP3.PrintConfigurations())
+
+    def PrintCoinListClicked(self):
+        self.configresultslabel.setText(CP3.PrintCoinList())
 
 
 
@@ -333,6 +366,10 @@ class Ui_MainWindow(object):
         #listeners for calculation buttons
         self.coinsortresultsbutton.clicked.connect(self.CSClicked)
         self.multiplesortresultsbutton.clicked.connect(self.MCSClicked)
+
+        self.configconfirmbutton.clicked.connect(self.UpdateConfigurationClicked)
+        self.printcoinlistbutton.clicked.connect(self.PrintCoinListClicked)
+        self.printcoinlistbutton_2.clicked.connect(self.PrintConfigurations)
 
 
 if __name__ == "__main__":
