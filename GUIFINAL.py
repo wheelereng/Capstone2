@@ -11,6 +11,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 import Capstone2_part3 as CP3
+import os
 
 
 class Ui_MainWindow(object):
@@ -322,6 +323,10 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Capstone Coin Sorter"))
+        #This gets the absolute path of the icon file
+
+        scriptDir = os.path.dirname(os.path.realpath("WinIcon.jpg"))
+        MainWindow.setWindowIcon(QtGui.QIcon(scriptDir + os.path.sep + "WinIcon.jpg"))
         self.CoinCalculatorbutton.setText(_translate("MainWindow", "Coin Calculator"))
         self.MultipleCoin_button.setText(_translate("MainWindow", "Multiple Coin"))
         self.Configurationsbutton.setText(_translate("MainWindow", "Configurations"))
