@@ -146,7 +146,7 @@ def PrintCoinList():
 
     '''
     #This initiates the string to return.
-    StringToPrint = "The available denominations are\n"
+    StringToPrint = "The available denominations are:\n"
 
     #Loop through the available denominations and concatenate them to the string with a new line after each.
     for denom in denominationText:

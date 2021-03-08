@@ -150,11 +150,12 @@ def UserFriendlyPrintMultipleCoin(MCSResultTup):
     else:
         StringToPrint = "You can convert " + str(MCSResultTup[2]) + "p into "
 
-        # This will loop through the list of number of coins and concatenates them to the string
+        # This will loop through the list of number of coins and concatenates them to the string.
         for nCoinsIndex in range(4):
-            # If the chosen value fits into a denomination, for example 15p into 10p, then the program will state that 15p fits into 1 x  10p
+            # If the chosen value fits into a denomination, for example 15p into 10p, then the program will state that 15p fits into 1 x  10p.
             if MCSResultTup[0][nCoinsIndex] != 0:
                 StringToPrint += str(MCSResultTup[0][nCoinsIndex]) + " x " +  denominationText2[nCoinsIndex] + ", "
+        # This will delete the last 2 characters. We do this to remove the comma at the end of the StringToPrint message.
         StringToPrint = StringToPrint[0:-2] + " "
 
         # If there is a remainder, the if statement will concatenate the value to create a new string stating the remainder.
@@ -361,4 +362,4 @@ def MainMenu():
             print("integers only!")
 
 
-print(GetCurrencyData())
+MainMenu()

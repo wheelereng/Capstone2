@@ -353,7 +353,7 @@ class Ui_MainWindow(object):
                     RadioFailBoo = True
                     errormessage = "Please select a currency"
             else: 
-                errormessage = "Please give us a reasonable minimum and maximum"
+                errormessage = "Your minimum amount cannot be less than 0.\n\nYour maximum must be above you minimum amount."
 
                 #Change radio fail boolean to True to prevent the function from being run with false data.
                 RadioFailBoo = True
