@@ -250,14 +250,14 @@ def SubMenu():
     while case != 4:
         # This presents the user with the sub-menu, and lists the options.
         try:
-            print("*** Set Details - Sub Menu ***")
+            print("\n\n*** Set Details - Sub Menu ***\n")
             print("1 - Set Currency")
             print("2 - Set Minimum Coin Input Value")
             print("3 - Set Maximum Coin Input Value")
             print("4 - Return To Main Menu")
 
             # This prompts the user to choose an option.
-            case = int(input("Enter option here: "))
+            case = int(input("\nEnter option here: "))
 
             # If the user selects number 1, they will be able to set the currency.
             if case==1:
@@ -325,7 +325,7 @@ def MainMenu():
     while case != 6:
         # This presents the user with the main menu, and lists the options.
         try:
-            print("***Coin Sorter - Main Menu***\n")
+            print("\n***Coin Sorter - Main Menu***\n")
             print("1 - Coin Calculator")
             print("2 - Multiple Coin Calculator")
             print("3 - Print Coin List")
@@ -334,7 +334,7 @@ def MainMenu():
             print("6 - Quit Program")
 
             # This prompts the user to choose an option.
-            case = int(input("Enter option here: "))
+            case = int(input("\nEnter option here: "))
 
             # If the user selects number 1, the coin sorter will be launched.
             if case==1:
