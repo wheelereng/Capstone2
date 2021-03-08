@@ -79,10 +79,7 @@ def UserFriendlyPrintCoinSort(ResultTup):
 
         # If there is a remainder, the if statement will concatenate the value to create a new string.
         if ResultTup[3] != 0:
-            StringToPrint += "with a remainder of " + str(ResultTup[3]) + "p."
-        # If there is no remainder, the program will print a full stop at the end of the StringToPrint variable.
-        else:
-            StringToPrint += "."
+            StringToPrint += "with a remainder of " + str(ResultTup[3]) + "p"
         
         # This will print the results in a user-friendly way.
         return StringToPrint
