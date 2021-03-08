@@ -16,6 +16,7 @@ def CoinSort(userTup, MCS=False):
     '''
     A function that, given the denomination, will give the number of coins of that denomination that will fit
     into the value, along with the remainder.
+
     '''
     # This returns a tuple of the value, number of coins that can fit into that value (integer division),
     # the index of the denomination we're considering, and the remainder (modulo).
@@ -30,6 +31,7 @@ def MultipleCoinSort(userTup):
     '''
     A function that, given a denomination to exclude, will return how many coins it can be split into, 
     prioritising larger denominations.
+
     '''
     # The value variable stores the 1st item (index 0) of the userTup. Here, the number of coins.
     value = userTup[0]
@@ -66,13 +68,11 @@ def UserFriendlyPrintCoinSort(ResultTup):
     '''
     A function that prints the results of CoinSort() in a user-friendly way.
 
-    note:
-    ResultTup is the return from the CoinSort function
     '''
     
-    # If the user enters a number below 10p, the program will print a message stating that the chosen value cannot be broken down any further. 
-    if ResultTup[0] < 10:
-       print("You can't break down " + str(ResultTup[0]) + "p any further\n")
+    # If the user enters a number below the denomination, the program will print a message stating that the chosen value cannot be broken down any further. 
+    if ResultTup[0] < denominationValue[ResultTup[2]]:
+       return("You can't break down " + str(ResultTup[0]) + "p any further\n")
     # If the chosen number is above 10p, the else statement will follow.
     else:
         StringToPrint = "You can break down " + str(ResultTup[0]) + "p into " + str(ResultTup[1]) + " x " + denominationText[ResultTup[2]] + "\n"
@@ -95,7 +95,8 @@ def UserFriendlyPrintMultipleCoin(MCSResultTup):
     to the console in a user-friendly way.
 
     note:
-    MCSResultTup is the return from the MultipleCoinSort function
+    MCSResultTup is the return from the MultipleCoinSort function.
+
     '''
     
     # If the user enters a number below 10p, the program will print a message stating that the chosen value cannot be broken down any further. 
@@ -108,18 +109,25 @@ def UserFriendlyPrintMultipleCoin(MCSResultTup):
 
         # This will loop through the list of number of coins and concatenates them to the string
         for nCoinsIndex in range(4):
-            # If the chosen value fits into a denomination, for example 15p into 10p, then the program will state that 15p fits into 1 x  10p
+            # If the chosen value fits into a denomination, for example 10p into 15p, then the program will state that 15p fits into 1 x  10p
             if MCSResultTup[0][nCoinsIndex] != 0:
-                StringToPrint += str(MCSResultTup[0][nCoinsIndex]) + " x " +  denominationText2[nCoinsIndex] + "   "
+                StringToPrint += str(MCSResultTup[0][nCoinsIndex]) + " x " +  denominationText2[nCoinsIndex] + ", "
+        #Removes the final comma and adds a space
+        StringToPrint = StringToPrint[0:-2] + " \n"
 
         # If there is a remainder, the if statement will concatenate the value to create a new string stating the remainder.
         if MCSResultTup[1] != 0:
-            StringToPrint += "with remainder " + str(MCSResultTup[1]) + "p."
+            StringToPrint += "with a remainder of " + str(MCSResultTup[1]) + "p"
 
         # This will print the results in a user-friendly way.
         return StringToPrint   
 
 def UpdateConfiguration(minval, maxval, currencytype):
+    ''' 
+    This function will update the values in the configuration dictionary to be used throughout the program.
+
+    '''
+
     Configurations["Minimum Value"] = minval
     Configurations["Maximum Value"] = maxval
     Configurations["Current Currency"] = currencytype
@@ -127,6 +135,7 @@ def UpdateConfiguration(minval, maxval, currencytype):
 def PrintConfigurations():
     '''
     This function will return the current configurations of the program in a user friendly string.
+
     '''
     stringToPrint = "The current configurations are:\n"
     # This will list the current configurations as defined in Configurations at the top of the code.
@@ -137,13 +146,15 @@ def PrintConfigurations():
 def PrintCoinList():
     '''
     This function will print the available denominations in a friendly manner.
-    '''
 
+    '''
+    #This initiates the string to return.
     StringToPrint = "The available denominations are\n"
 
+    #Loop through the available denominations and concatenate them to the string with a new line after each.
     for denom in denominationText:
         StringToPrint += denom + "\n"
-        
+
     return StringToPrint
 
 

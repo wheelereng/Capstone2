@@ -41,7 +41,7 @@ class Ui_MainWindow(object):
         self.CoinCalculatorPage.setStyleSheet("background-color: lightblue")
         self.CoinCalculatorPage.setObjectName("CoinCalculatorPage")
         self.coinsorttitlelabel = QtWidgets.QLabel(self.CoinCalculatorPage)
-        self.coinsorttitlelabel.setGeometry(QtCore.QRect(200, 40, 300, 100))
+        self.coinsorttitlelabel.setGeometry(QtCore.QRect(210, 40, 300, 100))
         font = QtGui.QFont()
         font.setPointSize(24)
         font.setBold(True)
@@ -49,7 +49,7 @@ class Ui_MainWindow(object):
         self.coinsorttitlelabel.setFont(font)
         self.coinsorttitlelabel.setObjectName("coinsorttitlelabel")
         self.coinsortamountlabel = QtWidgets.QLabel(self.CoinCalculatorPage)
-        self.coinsortamountlabel.setGeometry(QtCore.QRect(120, 160, 120, 20))
+        self.coinsortamountlabel.setGeometry(QtCore.QRect(140, 160, 120, 20))
         font = QtGui.QFont()
         font.setPointSize(14)
         font.setBold(True)
@@ -108,7 +108,7 @@ class Ui_MainWindow(object):
         self.multiplesortresultsbutton.setGeometry(QtCore.QRect(90, 370, 211, 32))
         self.multiplesortresultsbutton.setObjectName("multiplesortresultsbutton")
         self.Multiplecoinamountlabel = QtWidgets.QLabel(self.MultipleCoinPage)
-        self.Multiplecoinamountlabel.setGeometry(QtCore.QRect(150, 160, 120, 30))
+        self.Multiplecoinamountlabel.setGeometry(QtCore.QRect(135, 160, 120, 30))
         font = QtGui.QFont()
         font.setPointSize(14)
         font.setBold(True)
@@ -160,13 +160,13 @@ class Ui_MainWindow(object):
         self.configconfirmbutton.setGeometry(QtCore.QRect(40, 300, 181, 31))
         self.configconfirmbutton.setObjectName("configconfirmbutton")
         self.configcurrentcurrencylabel = QtWidgets.QLabel(self.Configurations)
-        self.configcurrentcurrencylabel.setGeometry(QtCore.QRect(60, 230, 151, 41))
+        self.configcurrentcurrencylabel.setGeometry(QtCore.QRect(60, 220, 151, 41))
         self.configcurrentcurrencylabel.setObjectName("configcurrentcurrencylabel")
         self.configminamountlabel = QtWidgets.QLabel(self.Configurations)
-        self.configminamountlabel.setGeometry(QtCore.QRect(59, 120, 131, 20))
+        self.configminamountlabel.setGeometry(QtCore.QRect(65, 120, 131, 20))
         self.configminamountlabel.setObjectName("configminamountlabel")
         self.configmaxamountlabel = QtWidgets.QLabel(self.Configurations)
-        self.configmaxamountlabel.setGeometry(QtCore.QRect(60, 180, 141, 16))
+        self.configmaxamountlabel.setGeometry(QtCore.QRect(65, 180, 141, 16))
         self.configmaxamountlabel.setObjectName("configmaxamountlabel")
         self.configmintextbox = QtWidgets.QLineEdit(self.Configurations)
         self.configmintextbox.setGeometry(QtCore.QRect(300, 120, 113, 21))
@@ -205,6 +205,7 @@ class Ui_MainWindow(object):
 
 
     #Functions for changing the stacked widget pages.
+    #changes the index of the widget functionality to bring them on top 
     def GoToCoinCalcPage(self):
         self.stackedWidget.setCurrentIndex(0)
 
@@ -217,11 +218,25 @@ class Ui_MainWindow(object):
     #Functions for doing the calculations and printing the results
 
     def CSClicked(self):
+        '''
+        This function will check all the data that is entered to make sure it's within the bounds of the algorithm and that 
+        the data is of the right type. It will then use the Coin Sort algorithm to sort the coins and it will then 
+        display that in the results text box.
+
+        '''
+
+        #Initiates the variable that will be changed to False when there's no radio button selected
         RadioFailBoo = False
+
+        #Try and except block to make sure that user only enters integers. 
         try:
             amount = int(self.Coinsorttextbox.text())
+
+            #Check to see if the amount is within the bounds as set out in the configuration dictionary. If it isn't then 
+            #update results variable to reflect this error.
             if amount > CP3.Configurations["Minimum Value"] and amount < CP3.Configurations["Maximum Value"]:
 
+                #goes through each radio button to find out which one is selected. If none are selected then radio button failure
                 if self.csradiobuttontwopound.isChecked():
                     denom = 0
                 elif self.csradiobuttononepound.isChecked():
@@ -235,6 +250,9 @@ class Ui_MainWindow(object):
                 else:
                     RadioFailBoo = True
                 
+                #if we've made it this far there's no errors in the amount variable, if there's also no errors in the radio buttons
+                #then we can calculate the results and store the string in the results variable. If there's a radio button error 
+                #update the results to reflect this.
                 if not RadioFailBoo:
                     result = CP3.UserFriendlyPrintCoinSort(CP3.CoinSort((amount, denom)))
                 else:
@@ -243,19 +261,33 @@ class Ui_MainWindow(object):
             else:
                 result = "Please enter a value between " + str(CP3.Configurations["Minimum Value"]) + " and " + str(CP3.Configurations["Maximum Value"])
 
+            #change the text of the results label box to the results from the function or the error messages that have been 
+            #recieved.
             self.coinsortresultslabel.setText(result)
         
         except ValueError:
+            #error message if the int() function fails.
             self.coinsortresultslabel.setText("Integers only!")
 
     def MCSClicked(self):
+        '''
+        This function will check all the data that is entered to make sure it's within the bounds of the algorithm and that 
+        the data is of the right type. It will then use the Multiple Coin Sort algorithm to sort the coins and it will then 
+        display that in the results text box.
+
+        '''
+        #Initiates the variable that will be changed to False when there's no radio button selected
         RadioFailBoo = False
         try:
             
+            #Try and except block to make sure that user only enters integers.
             amount = int(self.MultipleAmountsTextbox.text())
 
+            #Check to see if the amount is within the bounds as set out in the configuration dictionary. If it isn't then 
+            #update results variable to reflect this error.
             if amount > CP3.Configurations["Minimum Value"] and amount < CP3.Configurations["Maximum Value"]:
 
+                #goes through each radio button to find out which one is selected. If none are selected then radio button failure
                 if self.multiplecoinradio2pound.isChecked():
                     denom = 0
                 elif self.multiplecoinradio1pound.isChecked():
@@ -268,29 +300,49 @@ class Ui_MainWindow(object):
                     denom = 4
                 else:
                     RadioFailBoo = True
+
+                                
+                #if we've made it this far there's no errors in the amount variable, if there's also no errors in the radio buttons
+                #then we can calculate the results and store the string in the results variable. If there's a radio button error 
+                #update the results to reflect this.
                 
                 if not RadioFailBoo:
                     result = CP3.UserFriendlyPrintMultipleCoin(CP3.MultipleCoinSort((amount, denom)))
                 else:
                     result = "Please select a denomination"
 
-                
             else:
                 result = "Please enter a value between " + str(CP3.Configurations["Minimum Value"]) + " and " + str(CP3.Configurations["Maximum Value"])   
             
+            #change the text of the results label box to the results from the function or the error messages that have been 
+            #recieved.
             self.Multiplecoinsortresultslabel.setText(result)
 
         except ValueError:
+            #error message if the int() function fails.
             self.Multiplecoinsortresultslabel.setText("Integers only!")
 
     def UpdateConfigurationClicked(self):
+        '''
+        This function will check all the data that is entered to make sure that the minimum is not greater than the maximum and that 
+        the data is of the right type. It will then use the update configuration function to update the configuration dictionary. 
+
+        '''
+        #Try and except block to make sure that user only enters integers.
         try:
+            #initiate the errormessage to be successful, if there's an error this variable will be updated to reflect the error.
             errormessage = "Configurations Updated!"
+
+            #Initiates the variable that will be changed to False when there's no radio button selected
             RadioFailBoo = False
             newmin = int(self.configmintextbox.text())
             newmax = int(self.configmaxtextbox.text())
 
+            #Check to see if the minimum is less than the maximum. If it isn't update the error message variable to reflect this.
             if not (newmin > newmax or newmin < 0):
+
+                #Goes through the radio buttons to find out which one is selected, if none are selected then it will change the error message
+                #to reflect this and it will change the radio failed boolean to True.
                 if self.configcurrencybuttGBP.isChecked():
                     currency = "GBP (£)"
                 elif self.configcurrencybuttMGA.isChecked():
@@ -302,21 +354,37 @@ class Ui_MainWindow(object):
                     errormessage = "Please select a currency"
             else: 
                 errormessage = "Please give us a reasonable minimum and maximum"
+
+                #Change radio fail boolean to True to prevent the function from being run with false data.
                 RadioFailBoo = True
 
             if not RadioFailBoo:
+                #Passes the data through to the Update Configuration function to change the configuration dictionary.
                 CP3.UpdateConfiguration(newmin, newmax, currency)
 
             
         except ValueError:
+            #error message if the int() function fails.
             errormessage = "Integers only!"
         
+        #change the text of the results label box to the success message or the error messages that have been 
+        #recieved.
         self.configresultslabel.setText(errormessage)
 
     def PrintConfigurations(self):
+        '''
+        This function calls the print configurations function from the CP3 library and changes the text of the results box
+        to the text that is returned from that function.
+
+        '''
         self.configresultslabel.setText(CP3.PrintConfigurations())
 
     def PrintCoinListClicked(self):
+        '''
+        This function calls the print Coin List function from the CP3 library and changes the text of the results box
+        to the text that is returned from that function.
+
+        '''
         self.configresultslabel.setText(CP3.PrintCoinList())
 
 
@@ -324,11 +392,10 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Capstone Coin Sorter"))
-        #This gets the absolute path of the icon file
 
-        scriptDir = os.path.dirname(os.path.realpath("WinIcon.jpg"))
-        MainWindow.setWindowIcon(QtGui.QIcon(scriptDir + os.path.sep + "WinIcon.jpg"))
-
+        #This gets the absolute path of the icon file in the users computer and adds the icon to the top corner of the window
+        IconDir = os.path.dirname(os.path.realpath("WinIcon.jpg"))
+        MainWindow.setWindowIcon(QtGui.QIcon(IconDir + os.path.sep + "WinIcon.jpg"))
 
         self.CoinCalculatorbutton.setText(_translate("MainWindow", "Coin Calculator"))
         self.MultipleCoin_button.setText(_translate("MainWindow", "Multiple Coin"))
@@ -371,10 +438,11 @@ class Ui_MainWindow(object):
         self.MultipleCoin_button.clicked.connect(self.GoToCoinMultCalcPage)
         self.Configurationsbutton.clicked.connect(self.GoToCoinConfigPage)
 
-        #listeners for calculation buttons
+        #listeners for calculation buttons for coin sort and multiple coin sort
         self.coinsortresultsbutton.clicked.connect(self.CSClicked)
         self.multiplesortresultsbutton.clicked.connect(self.MCSClicked)
 
+        #Listeners for the configuration page
         self.configconfirmbutton.clicked.connect(self.UpdateConfigurationClicked)
         self.printcoinlistbutton.clicked.connect(self.PrintCoinListClicked)
         self.printcoinlistbutton_2.clicked.connect(self.PrintConfigurations)

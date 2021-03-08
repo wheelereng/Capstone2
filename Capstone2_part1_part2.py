@@ -127,10 +127,7 @@ def UserFriendlyPrintCoinSort(ResultTup):
 
         # If there is a remainder, the if statement will concatenate the value to create a new string.
         if ResultTup[3] != 0:
-            StringToPrint += " with a remainder of " + str(ResultTup[3]) + "p."
-        # If there is no remainder, the program will print a full stop at the end of the StringToPrint variable.
-        else:
-            StringToPrint += "."
+            StringToPrint += " with a remainder of " + str(ResultTup[3]) + "p"
         
         # This will print the results in a user-friendly way.
         print("\n" + StringToPrint + "\n")
@@ -151,17 +148,18 @@ def UserFriendlyPrintMultipleCoin(MCSResultTup):
         print("You can't break down " + str(MCSResultTup[2]) + "p any further\n")
     # If the chosen number is 10p and the 10p denominataion has not been excluded, the else statement will follow.
     else:
-        StringToPrint = "You can convert " + str(MCSResultTup[2]) + "p into   "
+        StringToPrint = "You can convert " + str(MCSResultTup[2]) + "p into "
 
         # This will loop through the list of number of coins and concatenates them to the string
         for nCoinsIndex in range(4):
             # If the chosen value fits into a denomination, for example 15p into 10p, then the program will state that 15p fits into 1 x  10p
             if MCSResultTup[0][nCoinsIndex] != 0:
-                StringToPrint += str(MCSResultTup[0][nCoinsIndex]) + " x " +  denominationText2[nCoinsIndex] + "   "
+                StringToPrint += str(MCSResultTup[0][nCoinsIndex]) + " x " +  denominationText2[nCoinsIndex] + ", "
+        StringToPrint = StringToPrint[0:-2] + " "
 
         # If there is a remainder, the if statement will concatenate the value to create a new string stating the remainder.
         if MCSResultTup[1] != 0:
-            StringToPrint += "with a remainder of " + str(MCSResultTup[1]) + "p."
+            StringToPrint += "with a remainder of " + str(MCSResultTup[1]) + "p"
 
         # This will print the results in a user-friendly way.
         print("\n" + StringToPrint + "\n")    
