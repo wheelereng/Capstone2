@@ -1,0 +1,615 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>741</width>
+    <height>556</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>741</width>
+    <height>556</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>741</width>
+    <height>556</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QPushButton" name="CoinCalculatorbutton">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>121</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Coin Calculator</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="MultipleCoin_button">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>20</y>
+      <width>113</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Multiple Coin</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Configurationsbutton">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>20</y>
+      <width>113</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Configurations</string>
+    </property>
+   </widget>
+   <widget class="QStackedWidget" name="stackedWidget">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>50</y>
+      <width>701</width>
+      <height>481</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="CoinCalculatorPage">
+     <property name="styleSheet">
+      <string notr="true">background-color: lightblue</string>
+     </property>
+     <widget class="QLabel" name="coinsorttitlelabel">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>40</y>
+        <width>171</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>24</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>COIN SORTER</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="coinsortamountlabel">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>160</y>
+        <width>71</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>AMOUNT</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="csradiobuttontwopound">
+      <property name="geometry">
+       <rect>
+        <x>310</x>
+        <y>220</y>
+        <width>100</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>£2</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="csradiobuttononepound">
+      <property name="geometry">
+       <rect>
+        <x>310</x>
+        <y>250</y>
+        <width>100</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>£1</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="Coinsorttextbox">
+      <property name="geometry">
+       <rect>
+        <x>320</x>
+        <y>160</y>
+        <width>113</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="csradiobutton50p">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>220</y>
+        <width>100</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>50p</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="csradiobutton20p">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>250</y>
+        <width>100</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>20p</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="csradiobutton10p">
+      <property name="geometry">
+       <rect>
+        <x>440</x>
+        <y>220</y>
+        <width>100</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>10p</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="coinsortdenomlabel">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>200</y>
+        <width>131</width>
+        <height>101</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>DENOMINATIONS</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="coinsortresultsbutton">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>350</y>
+        <width>113</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>SORT</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="coinsortresultslabel">
+      <property name="geometry">
+       <rect>
+        <x>320</x>
+        <y>320</y>
+        <width>361</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>COIN SORT RESULTS </string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="MultipleCoinPage">
+     <property name="styleSheet">
+      <string notr="true">background-color: lightyellow</string>
+     </property>
+     <widget class="QLabel" name="Multiplecointitlelabel">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>40</y>
+        <width>181</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>24</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>MULTIPLE COIN</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="multiplesortresultsbutton">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>370</y>
+        <width>211</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>MULTIPLE SORT</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="Multiplecoinamountlabel">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>160</y>
+        <width>71</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>AMOUNT</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="MultipleAmountsTextbox">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>150</y>
+        <width>113</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="Multiplecoinsortresultslabel">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>360</y>
+        <width>341</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Multiple Coin Sort Results</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="MultipleCoinDenomexcludelabel">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>200</y>
+        <width>221</width>
+        <height>111</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>DENOMINATION TO EXCLUDE</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="multiplecoinradio2pound">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>190</y>
+        <width>100</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>£2</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="multiplecoinradio1pound">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>220</y>
+        <width>100</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>£1</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="multiplecoinradio50p">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>250</y>
+        <width>100</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>50p</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="multiplecoinradio20p">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>280</y>
+        <width>100</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>20p</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="multiplecoinradio10p">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>310</y>
+        <width>100</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>10p</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="Configurations">
+     <property name="styleSheet">
+      <string notr="true">background-color: lightcoral</string>
+     </property>
+     <widget class="QLabel" name="Configtitlelabel">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>30</y>
+        <width>231</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>24</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>CONFIGUARATIONS</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="configconfirmbutton">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>300</y>
+        <width>181</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>CONFIRM</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="configcurrentcurrencylabel">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>230</y>
+        <width>151</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>CURRENT CURRENCY</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="configminamountlabel">
+      <property name="geometry">
+       <rect>
+        <x>59</x>
+        <y>120</y>
+        <width>131</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>MINIMUM AMOUNT</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="configmaxamountlabel">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>180</y>
+        <width>141</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>MAXIMUM AMOUNT</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="configmintextbox">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>120</y>
+        <width>113</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="configmaxtextbox">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>180</y>
+        <width>113</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="configcurrencybuttGBP">
+      <property name="geometry">
+       <rect>
+        <x>280</x>
+        <y>230</y>
+        <width>100</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>GBP</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="configcurrencybuttMGA">
+      <property name="geometry">
+       <rect>
+        <x>380</x>
+        <y>230</y>
+        <width>100</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>MGA</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="configcurrencybuttUSD">
+      <property name="geometry">
+       <rect>
+        <x>460</x>
+        <y>230</y>
+        <width>100</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>USD</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="printcoinlistbutton">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>340</y>
+        <width>181</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>PRINT COIN LIST </string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="printcoinlistbutton_2">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>380</y>
+        <width>181</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>PRINT CONFIGURATIONS</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="configresultslabel">
+      <property name="geometry">
+       <rect>
+        <x>290</x>
+        <y>290</y>
+        <width>391</width>
+        <height>131</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>CONFIGURATION RESULTS</string>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+  <action name="actionMenu2">
+   <property name="text">
+    <string>Menu2</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -359,14 +359,6 @@ def MainMenu():
         # Except catches the ValueError and prints "Integers only!".
         except ValueError:
             print("integers only!")
-        
-        
 
 
-MainMenu()
-
-
-
-
-
-
+print(GetCurrencyData())
