@@ -161,7 +161,7 @@ def UserFriendlyPrintMultipleCoin(MCSResultTup):
 
         # If there is a remainder, the if statement will concatenate the value to create a new string stating the remainder.
         if MCSResultTup[1] != 0:
-            StringToPrint += "with remainder " + str(MCSResultTup[1]) + "p."
+            StringToPrint += "with a remainder of " + str(MCSResultTup[1]) + "p."
 
         # This will print the results in a user-friendly way.
         print("\n" + StringToPrint + "\n")    
@@ -304,7 +304,7 @@ def SubMenu():
                     # Try and Except to make sure the user only enters integers.
                     try:
                         # This prompts the user to select a new maximum amount.
-                        NewMax = int(input("Please enter a new maximum: "))
+                        NewMax = int(input("Please enter a new maximum that is above " + str(Configurations["Minimum Value"]) + ": "))
                     # Except catches the ValueError and prints "Integers only!".
                     except ValueError:
                         print("Integers only!")
@@ -365,7 +365,7 @@ def MainMenu():
         
 
 
-#MainMenu()
+MainMenu()
 
 
 
