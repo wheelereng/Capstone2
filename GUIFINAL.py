@@ -260,7 +260,7 @@ class Ui_MainWindow(object):
             else:
                 result = "Please enter a value between " + str(CP3.Configurations["Minimum Value"]) + " and " + str(CP3.Configurations["Maximum Value"])
 
-            #This changes the text of the result label box to the result from the function or the error messages that have been recieved.
+            #This changes the text of the result label box to the result from the function or the error messages that have been received.
             self.coinsortresultslabel.setText(result)
         
         except ValueError:
