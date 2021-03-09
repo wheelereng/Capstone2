@@ -361,5 +361,5 @@ def MainMenu():
         except ValueError:
             print("integers only!")
 
-
+# This will call the MainMenu function and allow the user to interact with the program in the terminal.
 MainMenu()
